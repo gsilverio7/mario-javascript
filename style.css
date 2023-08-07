@@ -1,0 +1,145 @@
+@font-face {
+    font-family: 'Free Pixel';
+    src: url('fonts/FreePixel.ttf');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.board{
+    position: relative;
+    width: 80%;
+    height: 500px;
+    border: 1px solid #000;
+    border-bottom: 5px solid green;
+    margin: 0 auto;
+    overflow: hidden;
+    background: linear-gradient(#0099ff, #fff);
+    z-index: 99;
+}
+
+.clouds{
+    position: absolute;
+    width: 400px;
+    animation: cloud-animation 25s linear infinite;
+}
+
+.pipe{
+    position: absolute;
+    bottom: 0;
+    width: 80px;
+    right: -80px;
+}
+
+.pipe-animation{
+    animation: pipe-animation 1.5s linear infinite;
+}
+
+.mario{
+    position: absolute;
+    bottom: 0;
+    width: 120px;
+}
+
+.jump{
+    animation: jump 500ms ease-out;
+}
+
+.ui{
+    font-family: 'Free Pixel', monospace;
+    font-weight: bold;
+    font-size: larger;
+    text-align: center;
+}
+
+.start{
+    position: relative;
+}
+
+.game-over{
+    position: relative;
+    top: -100px;
+}
+
+.btn{
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.ui-start-move-up{
+    animation: ui-start-move-up 1s forwards;
+}
+
+.ui-game-over-move-up{
+    animation: ui-game-over-move-up 1s forwards;
+}
+
+.ui-move-down{
+    animation: ui-move-down 1s forwards;
+}
+
+@keyframes cloud-animation{
+    from {
+        right: -400px;
+    }
+    to {
+        right: 100%;
+    }
+}
+
+@keyframes pipe-animation{
+    from {
+        right: -80px;
+    }
+    to {
+        right: 100%;
+    }
+}
+
+@keyframes jump{
+    0%{
+        bottom: 0;
+    }
+    40%{
+        bottom: 150px;
+    }
+    50%{
+        bottom: 150px;
+    }
+    60%{
+        bottom: 150px;
+    }
+    100%{
+        bottom: 0;
+    }
+}
+
+@keyframes ui-start-move-up{
+    from {
+        top: 0;
+    }
+    to {
+        top: -100px;
+    }
+}
+
+@keyframes ui-game-over-move-up{
+    from {
+        top: -44px;
+    }
+    to {
+        top: -100px;
+    }
+}
+
+@keyframes ui-move-down{
+    from {
+        top: -100px;
+    }
+    to {
+        top: -44px;
+    }
+}
