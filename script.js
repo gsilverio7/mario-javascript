@@ -6,15 +6,15 @@ const uiGameOver = document.querySelector('.game-over');
 const btnStart = document.querySelector('.btn-start');
 const btnReload = document.querySelector('.btn-reload');
 const btnSound = document.querySelector('.btn-sound');
-const music = new Audio('/sounds/music.mp3');
+const music = new Audio('./sounds/music.mp3');
 //const jumpSound = new Audio('/sounds/jump.mp3');
-const gameOverSound = new Audio('/sounds/game-over.mp3');
+const gameOverSound = new Audio('./sounds/game-over.mp3');
 
 var isJumping = false;
 const jump = () => {
     if (! isJumping) {
         isJumping = true;
-        musicIsPlaying ? new Audio('/sounds/jump.mp3').play() : '';
+        musicIsPlaying ? new Audio('./sounds/jump.mp3').play() : '';
         mario.classList.add('jump');
         setTimeout(() => {
             mario.classList.remove('jump');
@@ -34,7 +34,7 @@ function game() {
 
     if (pipePosition <= 100 && pipePosition >= 0 && marioPosition <= 102) {
 
-        musicIsPlaying ? new Audio('/sounds/game-over.mp3').play() : '';
+        musicIsPlaying ? new Audio('./sounds/game-over.mp3').play() : '';
         musicIsPlaying ? music.pause() : '';
         isGameOver = true;
 
