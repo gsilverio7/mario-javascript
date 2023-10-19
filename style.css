@@ -81,6 +81,22 @@
     animation: ui-move-down 1s forwards;
 }
 
+.sound{
+    padding: 0 10%;
+    text-align: right;
+    cursor: pointer;
+    position: relative;
+    top: -90px;
+}
+
+.h-score{
+    padding: 0 10%;
+    text-align: left;
+    position: relative;
+    top: -110px;
+    z-index: -1;
+}
+
 @keyframes cloud-animation{
     from {
         right: -400px;

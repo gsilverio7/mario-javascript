@@ -5,15 +5,26 @@ const uiStart = document.querySelector('.start');
 const uiGameOver = document.querySelector('.game-over');
 const btnStart = document.querySelector('.btn-start');
 const btnReload = document.querySelector('.btn-reload');
+const btnSound = document.querySelector('.btn-sound');
+const music = new Audio('/sounds/music.mp3');
+//const jumpSound = new Audio('/sounds/jump.mp3');
+const gameOverSound = new Audio('/sounds/game-over.mp3');
 
+var isJumping = false;
 const jump = () => {
-    mario.classList.add('jump');
-    setTimeout(() => {
-        mario.classList.remove('jump');
-    }, 500);
+    if (! isJumping) {
+        isJumping = true;
+        musicIsPlaying ? new Audio('/sounds/jump.mp3').play() : '';
+        mario.classList.add('jump');
+        setTimeout(() => {
+            mario.classList.remove('jump');
+            isJumping = false;
+        }, 500);
+    }
 }
 
 var loop = null;
+var isGameOver = false;
 
 function game() {
     const pipePosition = pipe.offsetLeft;
@@ -22,6 +33,10 @@ function game() {
     const marioPosition = 380 - mario.offsetTop;
 
     if (pipePosition <= 100 && pipePosition >= 0 && marioPosition <= 102) {
+
+        musicIsPlaying ? new Audio('/sounds/game-over.mp3').play() : '';
+        musicIsPlaying ? music.pause() : '';
+        isGameOver = true;
 
         mario.src = 'imgs/game-over.png';
         mario.style.width = '62px';
@@ -52,6 +67,10 @@ btnStart.onclick = () => {
 }
 
 btnReload.onclick = () => {
+    musicIsPlaying ? music.currentTime = 0 : '';
+    musicIsPlaying ? music.play() : '';
+    isGameOver = false;
+
     uiGameOver.classList.remove('ui-move-down');
     uiGameOver.classList.add('ui-game-over-move-up');
 
@@ -69,3 +88,22 @@ btnReload.onclick = () => {
 
     loop = setInterval(game, 10);
 }
+
+var musicIsPlaying = false;
+btnSound.onclick = () => {
+    if (musicIsPlaying) {
+        musicIsPlaying = false;
+        btnSound.innerHTML = 'TURN SOUND ON';
+        music.pause();
+    } else {
+        musicIsPlaying = true;
+        btnSound.innerHTML = 'TURN SOUND OFF';
+        !isGameOver ? music.play() : '';
+    }
+}
+
+music.addEventListener('ended', () => {
+    music.currentTime = 0;
+    music.play();
+    console.log('ended');
+}, false);
